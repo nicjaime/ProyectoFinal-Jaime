@@ -1,0 +1,14 @@
+[
+    {"name": "Manzana", "calories": 95},
+    {"name": "Banana", "calories": 105},
+    {"name": "Naranja", "calories": 62},
+    {"name": "Frutilla", "calories": 32},
+    {"name": "Sandía", "calories": 85},
+    {"name": "Uvas", "calories": 104},
+    {"name": "Pera", "calories": 101},
+    {"name": "Durazno", "calories": 59},
+    {"name": "Cereza", "calories": 50},
+    {"name": "Ananá", "calories": 452},
+    {"name": "Mango", "calories": 201},
+    {"name": "Kiwi", "calories": 42}
+]
