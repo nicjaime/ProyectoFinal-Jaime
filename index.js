@@ -6,8 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const caloriesChartCtx = document.getElementById('calories-chart').getContext('2d');
 
     let foods = [];
-    let totalCalories = 0;
-    const selectedFoods = [];
+    let selectedFoods = JSON.parse(localStorage.getItem('selectedFoods')) || [];
 
     // Fetch food data from a local JSON file
     fetch('foods.json')
@@ -15,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             foods = data;
             populateFoodSelect();
+            updateFoodList();
+            updateTotalCalories();
+            updateChart();
         })
         .catch(error => console.error('Error fetching the food data:', error));
 
@@ -36,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateFoodList();
             updateTotalCalories();
             updateChart();
+            saveToLocalStorage();
         }
     });
 
@@ -51,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateFoodList();
                 updateTotalCalories();
                 updateChart();
+                saveToLocalStorage();
             });
             listItem.appendChild(removeButton);
             foodList.appendChild(listItem);
@@ -58,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateTotalCalories() {
-        totalCalories = selectedFoods.reduce((total, food) => total + food.calories, 0);
+        const totalCalories = selectedFoods.reduce((total, food) => total + food.calories, 0);
         totalCaloriesElement.textContent = totalCalories;
     }
 
@@ -104,5 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+    }
+
+    function saveToLocalStorage() {
+        localStorage.setItem('selectedFoods', JSON.stringify(selectedFoods));
     }
 });
